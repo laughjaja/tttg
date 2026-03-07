@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #3d3d38;
+    --ink-light: #6b6b63;
+    --rule: #b8a98a;
+    --rule-light: #ddd5c4;
+    --bg: #ffffff;
+    --accent: #2c3e50;
+    --page-width: 820px;
+  }
+
+  body {
+    background: #ffffff;
+    font-family: 'Carlito', Calibri, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Toolbar ── */
+  .toolbar {
+    width: var(--page-width);
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .toolbar button {
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 7px 18px;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .toolbar button:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .toolbar button.print-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .toolbar button.print-btn:hover { background: var(--ink); border-color: var(--ink); }
+
+  /* ── Page ── */
+  .page {
+    width: var(--page-width);
+    max-width: 100%;
+    background: var(--bg);
+    box-shadow: none;
+    padding: 64px 72px 72px;
+    position: relative;
+  }
+
+  /* ── Header ── */
+  .resume-header {
+    text-align: center;
+    padding-bottom: 28px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .candidate-name {
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    outline: none;
+  }
+
+  .candidate-title {
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-mid);
+    letter-spacing: 0.02em;
+    margin-bottom: 0;
+    outline: none;
+  }
+
+  /* ── Sections ── */
+  .section {
+    margin-bottom: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+    outline: none;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Summary */
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-mid);
+    font-style: italic;
+    padding: 0 8px;
+    outline: none;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 24px;
+    padding: 0 8px;
+  }
+
+  .skill-item {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--rule-light);
+    outline: none;
+  }
+  .skill-item::before { content: "·  "; color: var(--rule); }
+
+  .add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+    background: none;
+    border: 1px dashed var(--rule-light);
+    padding: 3px 10px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: all 0.2s;
+  }
+  .add-btn:hover { color: var(--ink); border-color: var(--rule); }
+
+  /* Work Experience */
+  .experience-entry {
+    margin-bottom: 18px;
+    padding-left: 0;
+    position: relative;
+  }
+
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+
+  .entry-role {
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+  }
+
+  .entry-dates {
+    font-size: 12.5px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    outline: none;
+  }
+
+  .entry-org {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mid);
+    margin-bottom: 6px;
+    outline: none;
+  }
+
+  .entry-bullets {
+    list-style: none;
+    padding: 0;
+  }
+  .entry-bullets li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+    padding-left: 16px;
+    position: relative;
+    outline: none;
+  }
+  .entry-bullets li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--rule);
+    font-size: 12px;
+    top: 2px;
+  }
+
+  /* Education */
+  .education-entry {
+    margin-bottom: 14px;
+  }
+
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .edu-degree {
+    font-family: 'Carlito', Calibri, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    outline: none;
+  }
+
+  .edu-dates {
+    font-size: 12.5px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    outline: none;
+  }
+
+  .edu-school {
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--ink-mid);
+    outline: none;
+  }
+
+  .edu-detail {
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-top: 2px;
+    outline: none;
+  }
+
+  /* Certifications */
+  .cert-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px dotted var(--rule-light);
+    margin-bottom: 4px;
+  }
+
+  .cert-name {
+    font-size: 14px;
+    color: var(--ink-mid);
+    outline: none;
+  }
+
+  .cert-issuer {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-light);
+    outline: none;
+  }
+
+  .cert-year {
+    font-size: 12.5px;
+    color: var(--ink-light);
+    letter-spacing: 0.06em;
+    outline: none;
+  }
+
+  /* Additional */
+  .additional-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-mid);
+    padding: 0 8px;
+    outline: none;
+  }
+
+  /* Editable highlights */
+  [contenteditable="true"]:hover {
+    background: rgba(184,169,138,0.12);
+    border-radius: 2px;
+  }
+  [contenteditable="true"]:focus {
+    background: rgba(184,169,138,0.2);
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+
+  .remove-btn {
+    display: none;
+    position: absolute;
+    right: -24px;
+    top: 0;
+    background: none;
+    border: none;
+    color: var(--rule);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 4px;
+    transition: color 0.2s;
+  }
+  .experience-entry:hover .remove-btn,
+  .education-entry:hover .remove-btn,
+  .cert-entry:hover .remove-btn { display: inline-block; }
+  .remove-btn:hover { color: #c0392b; }
+
+  /* Footer removed */
+  .resume-footer { display: none; }
+
+  /* Print */
+  @media print {
+    body { background: white; padding: 0; }
+    .toolbar { display: none; }
+    .page { box-shadow: none; padding: 48px 56px; }
+    .add-btn, .remove-btn { display: none !important; }
+    [contenteditable] { outline: none !important; background: none !important; box-shadow: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="resetTemplate()">↺ Reset</button>
+  <button onclick="window.print()" class="print-btn">⎙ Print / Save PDF</button>
+</div>
+
+<div class="page" id="resume">
+
+  <!-- HEADER -->
+  <header class="resume-header">
+    <div class="candidate-name" contenteditable="true">Full Name</div>
+    <div class="candidate-title" contenteditable="true">Professional Title</div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section class="section" id="sec-summary">
+    <div class="section-header">
+      <div class="section-title" contenteditable="true">Professional Summary</div>
+      <div class="section-rule"></div>
+    </div>
+    <p class="summary-text" contenteditable="true">Sentence one. Sentence two. Sentence three. Sentence four.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="sec-skills">
+    <div class="section-header">
+      <div class="section-title" contenteditable="true">Core Competencies & Skills</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-item" contenteditable="true">Skill</div>
+      <div class="skill-item" contenteditable="true">Skill</div>
+      <div class="skill-item" contenteditable="true">Skill</div>
+      <div class="skill-item" contenteditable="true">Skill</div>
+      <div class="skill-item" contenteditable="true">Skill</div>
+      <div class="skill-item" contenteditable="true">Skill</div>
+    </div>
+    <button class="add-btn" onclick="addSkill()">+ Add Skill</button>
+  </section>
+
+  <!-- WORK EXPERIENCE -->
+  <section class="section" id="sec-experience">
+    <div class="section-header">
+      <div class="section-title" contenteditable="true">Professional Experience</div>
+      <div class="section-rule"></div>
+    </div>
+    <div id="experience-list">
+
+      <div class="experience-entry">
+        <button class="remove-btn" onclick="removeEntry(this)">×</button>
+        <div class="entry-header">
+          <div class="entry-role" contenteditable="true">Job Title</div>
+          <div class="entry-dates" contenteditable="true">Jan 2022 — Present</div>
+        </div>
+        <div class="entry-org" contenteditable="true">Company Name · City</div>
+        <ul class="entry-bullets">
+          <li contenteditable="true">Bullet point.</li>
+          <li contenteditable="true">Bullet point.</li>
+          <li contenteditable="true">Bullet point.</li>
+        </ul>
+      </div>
+
+      <div class="experience-entry">
+        <button class="remove-btn" onclick="removeEntry(this)">×</button>
+        <div class="entry-header">
+          <div class="entry-role" contenteditable="true">Job Title</div>
+          <div class="entry-dates" contenteditable="true">MMM YYYY — MMM YYYY</div>
+        </div>
+        <div class="entry-org" contenteditable="true">Company Name · City</div>
+        <ul class="entry-bullets">
+          <li contenteditable="true">Bullet point.</li>
+          <li contenteditable="true">Bullet point.</li>
+        </ul>
+      </div>
+
+    </div>
+    <button class="add-btn" onclick="addExperience()">+ Add Position</button>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="sec-education">
+    <div class="section-header">
+      <div class="section-title" contenteditable="true">Education</div>
+      <div class="section-rule"></div>
+    </div>
+    <div id="education-list">
+
+      <div class="education-entry" style="position:relative">
+        <button class="remove-btn" onclick="removeEntry(this)">×</button>
+        <div class="edu-header">
+          <div class="edu-degree" contenteditable="true">Degree or Diploma</div>
+          <div class="edu-dates" contenteditable="true">YYYY</div>
+        </div>
+        <div class="edu-school" contenteditable="true">Institution — City</div>
+        <div class="edu-detail" contenteditable="true">Optional detail</div>
+      </div>
+
+    </div>
+    <button class="add-btn" onclick="addEducation()">+ Add Education</button>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section" id="sec-certifications">
+    <div class="section-header">
+      <div class="section-title" contenteditable="true">Certifications & Professional Development</div>
+      <div class="section-rule"></div>
+    </div>
+    <div id="cert-list">
+
+      <div class="cert-entry" style="position:relative">
+        <button class="remove-btn" onclick="removeEntry(this)">×</button>
+        <span class="cert-name" contenteditable="true">Certification Name</span>
+        <span class="cert-issuer" contenteditable="true">Issuing Organization</span>
+        <span class="cert-year" contenteditable="true">YYYY</span>
+      </div>
+
+      <div class="cert-entry" style="position:relative">
+        <button class="remove-btn" onclick="removeEntry(this)">×</button>
+        <span class="cert-name" contenteditable="true">Certification Name</span>
+        <span class="cert-issuer" contenteditable="true">Issuing Organization</span>
+        <span class="cert-year" contenteditable="true">YYYY</span>
+      </div>
+
+    </div>
+    <button class="add-btn" onclick="addCert()">+ Add Certification</button>
+  </section>
+
+  <!-- ADDITIONAL -->
+  <section class="section" id="sec-additional">
+    <div class="section-header">
+      <div class="section-title" contenteditable="true">Additional Information</div>
+      <div class="section-rule"></div>
+    </div>
+    <p class="additional-text" contenteditable="true">Additional details here. Rename the heading above to suit the content.</p>
+  </section>
+
+
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function addSkill() {
+    const grid = document.getElementById('skills-grid');
+    const div = document.createElement('div');
+    div.className = 'skill-item';
+    div.contentEditable = 'true';
+    div.textContent = 'New Skill';
+    grid.appendChild(div);
+    div.focus();
+    selectAll(div);
+  }
+
+  function addExperience() {
+    const list = document.getElementById('experience-list');
+    const entry = document.createElement('div');
+    entry.className = 'experience-entry';
+    entry.innerHTML = `
+      <button class="remove-btn" onclick="removeEntry(this)">×</button>
+      <div class="entry-header">
+        <div class="entry-role" contenteditable="true">Job Title</div>
+        <div class="entry-dates" contenteditable="true">MMM YYYY — MMM YYYY</div>
+      </div>
+      <div class="entry-org" contenteditable="true">Company Name · City, Province</div>
+      <ul class="entry-bullets">
+        <li contenteditable="true">Describe a key achievement or responsibility.</li>
+      </ul>`;
+    list.appendChild(entry);
+    entry.querySelector('.entry-role').focus();
+  }
+
+  function addEducation() {
+    const list = document.getElementById('education-list');
+    const entry = document.createElement('div');
+    entry.className = 'education-entry';
+    entry.style.position = 'relative';
+    entry.innerHTML = `
+      <button class="remove-btn" onclick="removeEntry(this)">×</button>
+      <div class="edu-header">
+        <div class="edu-degree" contenteditable="true">Degree or Diploma</div>
+        <div class="edu-dates" contenteditable="true">YYYY</div>
+      </div>
+      <div class="edu-school" contenteditable="true">Institution — City, Province</div>
+      <div class="edu-detail" contenteditable="true">Optional detail</div>`;
+    list.appendChild(entry);
+    entry.querySelector('.edu-degree').focus();
+  }
+
+  function addCert() {
+    const list = document.getElementById('cert-list');
+    const entry = document.createElement('div');
+    entry.className = 'cert-entry';
+    entry.style.position = 'relative';
+    entry.innerHTML = `
+      <button class="remove-btn" onclick="removeEntry(this)">×</button>
+      <span class="cert-name" contenteditable="true">Certification Name</span>
+      <span class="cert-issuer" contenteditable="true">Issuing Organization</span>
+      <span class="cert-year" contenteditable="true">YYYY</span>`;
+    list.appendChild(entry);
+    entry.querySelector('.cert-name').focus();
+  }
+
+  function removeEntry(btn) {
+    btn.parentElement.remove();
+  }
+
+  function selectAll(el) {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.re
