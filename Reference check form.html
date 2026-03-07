@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Reference Check - Top Tier Talent</title>
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #3d3d38;
+    --ink-light: #6b6b63;
+    --border: #e2e8f0;
+    --document-white: #ffffff;
+    --page-width: 8.5in; 
+    --page-height: 11in;
+    --margin: 1in;
+  }
+
+  body {
+    background: #f0f0f0; 
+    font-family: 'Carlito', Calibri, Arial, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .toolbar {
+    width: var(--page-width);
+    max-width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .toolbar button {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 24px;
+    border: none;
+    background: var(--ink);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .page {
+    width: var(--page-width);
+    min-height: var(--page-height);
+    background: var(--document-white);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    padding: var(--margin);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .banner-wrap {
+    width: 100%;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .banner-wrap img {
+    max-height: 60px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 22px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .profile-item {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 3px;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+
+  .value {
+    color: var(--ink);
+    font-size: 14px;
+    min-height: 20px;
+    outline: none;
+    line-height: 1.4;
+  }
+
+  .value:focus {
+    background-color: #fafafa;
+  }
+
+  .question-block {
+    margin-bottom: 18px;
+  }
+
+  .question-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .answer-area {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    padding: 10px;
+    background: #fff;
+    border: 1px solid var(--border);
+    min-height: 58px;
+    outline: none;
+    width: 100%;
+    white-space: pre-wrap;
+  }
+
+  .footer-fields {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    padding-bottom: 36px;
+  }
+
+  [contenteditable]:empty:before {
+    content: attr(data-placeholder);
+    color: #cbd5e1;
+    font-style: italic;
+  }
+
+  @media print {
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    body {
+      background: white;
+      padding: 0;
+    }
+
+    .toolbar {
+      display: none;
+    }
+
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 8.5in;
+      height: 11in;
+      padding: 1in;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Print / Export PDF</button>
+</div>
+
+<div class="page">
+
+  <div class="banner-wrap">
+    <img src="https://raw.githubusercontent.com/laughjaja/tttg/main/Full%20Size%20logo.png">
+  </div>
+
+  <header>
+    <h1>Professional Reference Check Form</h1>
+  </header>
+
+  <div class="profile-grid">
+    <div class="profile-item full-width">
+      <span class="label">Reference For (Candidate)</span>
+      <div class="value" contenteditable="true" data-placeholder="Candidate Full Name"></div>
+    </div>
+    
+    <div class="profile-item">
+      <span class="label">Candidate's Company / Job Title</span>
+      <div class="value" contenteditable="true" data-placeholder="Company and Title during employment"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">Reference's Name</span>
+      <div class="value" contenteditable="true" data-placeholder="Full Name"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">Reference's Current Title</span>
+      <div class="value" contenteditable="true" data-placeholder="Current Job Title"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">Reference Title when working with Candidate</span>
+      <div class="value" contenteditable="true" data-placeholder="Title held during shared tenure"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">Professional Relationship</span>
+      <div class="value" contenteditable="true" data-placeholder="e.g. Direct Supervisor"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">Dates of Employment</span>
+      <div class="value" contenteditable="true" data-placeholder="MM/YYYY - MM/YYYY"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">How long have you known the candidate?</span>
+      <div class="value" contenteditable="true" data-placeholder="Duration in years/months"></div>
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">1. What were/are the candidate's main job responsibilities?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">2. How would you describe the candidate's overall performance using a scale from 1-10 (10 being highest)?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">3. What are the candidate's key strengths?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">4. Are there any areas where he/she could improve?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">5. How would you describe the candidate's interpersonal skills with supervisors, co-workers and subordinates?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">6. What was the candidate's reason for leaving?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">7. If the appropriate position were available within your organization, would you rehire this individual? If not, why not?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="question-block">
+    <div class="question-text">8. Is there any other information you would like to add regarding their performance that we have not covered?</div>
+    <div class="answer-area" contenteditable="true"></div>
+  </div>
+
+  <div class="footer-fields">
+    <div class="profile-item">
+      <span class="label">Completed by</span>
+      <div class="value" contenteditable="true" data-placeholder="Enter your name"></div>
+    </div>
+
+    <div class="profile-item">
+      <span class="label">Date</span>
+      <div class="value" contenteditable="true" data-placeholder="Enter date"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
